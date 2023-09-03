@@ -29,3 +29,4 @@ jobs:
         with:
           name: Maven Tests
           path: backend/target/surefire-reports/*.xml
+          reporter: java-junit
