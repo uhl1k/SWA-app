@@ -41,7 +41,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./target/*.jar
+          asset_path: ./backend/target/swa-app-be-0.0.1-SNAPSHOT.jar
           asset_name: swa-app.jar
           asset_content_type: application/zip
 
