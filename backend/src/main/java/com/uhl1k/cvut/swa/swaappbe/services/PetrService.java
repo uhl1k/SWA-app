@@ -1,5 +1,9 @@
 package com.uhl1k.cvut.swa.swaappbe.services;
 
+import com.uhl1k.cvut.swa.swaappbe.dto.AuthorDto;
+import com.uhl1k.cvut.swa.swaappbe.dto.BookDto;
+import com.uhl1k.cvut.swa.swaappbe.dto.NewAuthorDto;
+import com.uhl1k.cvut.swa.swaappbe.dto.NewBookDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -24,6 +28,50 @@ public class PetrService {
     return petrDataSource.aliveEndPoint();
   }
 
+  public BookDto[] getBooks(int page, int pageSize, String title) {
+    return petrDataSource.getBooks(page, pageSize, title);
+  }
+
+  public int addBook(NewBookDto book) {
+    return petrDataSource.addBook(book);
+  }
+
+  public BookDto getBook(String isbn) {
+    return petrDataSource.getBook(isbn);
+  }
+
+  public BookDto modifyBook(String isbn, NewBookDto book) {
+    return petrDataSource.modifyBook(isbn, book);
+  }
+
+  public void deleteBook(String isbn) {
+    petrDataSource.deleteBook(isbn);
+  }
+
+  public AuthorDto[] getAuthors(int page, int pageSize) {
+    return petrDataSource.getAuthors(page, pageSize);
+  }
+
+  public int addAuthor(NewAuthorDto author) {
+    return petrDataSource.addAuthor(author);
+  }
+
+  public AuthorDto getAuthor(int id) {
+    return petrDataSource.getAuthor(id);
+  }
+
+  public void modifyAuthor(int id, NewAuthorDto author) {
+    petrDataSource.modifyAuthor(id, author);
+  }
+
+  public void deleteAuthor(int id) {
+    petrDataSource.deleteAuthor(id);
+  }
+
+  public BookDto[] getBooksFromAuthor(int id) {
+    return petrDataSource.getBooksFromAuthor(id);
+  }
+
   @FeignClient(name = "PetrService")
   interface PetrDataSource {
     @RequestMapping(path = "/petr", method = RequestMethod.GET)
@@ -32,19 +80,19 @@ public class PetrService {
 
     @RequestMapping(path = "/books", method = RequestMethod.GET)
     @ResponseBody
-    Object getBooks(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize, @RequestParam("title") String title);
+    BookDto[] getBooks(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize, @RequestParam("title") String title);
 
     @RequestMapping(path = "/books", method = RequestMethod.PUT)
     @ResponseBody
-    int addBook(@RequestBody Object book);
+    int addBook(@RequestBody NewBookDto book);
 
     @RequestMapping(path = "/books/{isbn}", method = RequestMethod.GET)
     @ResponseBody
-    Object getBook(@PathVariable("isbn") String isbn);
+    BookDto getBook(@PathVariable("isbn") String isbn);
 
     @RequestMapping(path = "/books/{isbn}", method = RequestMethod.POST)
     @ResponseBody
-    Object modifyBook(@PathVariable("isbn") String isbn, @RequestBody Object book);
+    BookDto modifyBook(@PathVariable("isbn") String isbn, @RequestBody NewBookDto book);
 
     @RequestMapping(path = "/books/{isbn}", method = RequestMethod.DELETE)
     @ResponseBody
@@ -52,19 +100,19 @@ public class PetrService {
 
     @RequestMapping(path = "/authors", method = RequestMethod.GET)
     @ResponseBody
-    Object getAuthors(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize);
+    AuthorDto[] getAuthors(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize);
 
     @RequestMapping(path = "/authors", method = RequestMethod.PUT)
     @ResponseBody
-    int addAuthor(@RequestBody Object author);
+    int addAuthor(@RequestBody NewAuthorDto author);
 
     @RequestMapping(path = "/authors/{author-id}", method = RequestMethod.GET)
     @ResponseBody
-    Object getAuthor(@PathVariable("author-id") int id);
+    AuthorDto getAuthor(@PathVariable("author-id") int id);
 
     @RequestMapping(path = "/authors/{author-id}", method = RequestMethod.GET)
     @ResponseBody
-    void modifyAuthor(@PathVariable("author-id") int id, @RequestBody Object author);
+    void modifyAuthor(@PathVariable("author-id") int id, @RequestBody NewAuthorDto author);
 
     @RequestMapping(path = "/authors/{author-id}", method = RequestMethod.GET)
     @ResponseBody
@@ -72,6 +120,6 @@ public class PetrService {
 
     @RequestMapping(path = "/authors/{author-id}/books", method = RequestMethod.GET)
     @ResponseBody
-    Object getBooksFromAuthor(@PathVariable("author-id") int id);
+    BookDto[] getBooksFromAuthor(@PathVariable("author-id") int id);
   }
 }
