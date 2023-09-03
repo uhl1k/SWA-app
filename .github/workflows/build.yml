@@ -23,4 +23,4 @@ jobs:
           cache: 'maven'
 
       - name: Build
-        run: mvn --batch-mode -DskipTests clean install spring-boot:repackage
+        run: mvn --batch-mode -DskipTests clean install -f backend/pom.xml spring-boot:repackage
