@@ -10,6 +10,8 @@ import org.springframework.web.context.request.WebRequest;
 public class RestExceptionHandler {
   @ExceptionHandler(value = {Exception.class})
   public ResponseEntity<String> genericErrorHandler(Exception ex, WebRequest req) {
+    System.out.println(ex.getMessage());
+    ex.printStackTrace(System.out);
     return new ResponseEntity<>(HttpStatusCode.valueOf(500));
   }
 }
