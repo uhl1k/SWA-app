@@ -1,0 +1,26 @@
+name: Building
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [ closed ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Set up JDK 1.17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: 'maven'
+
+      - name: Build
+        run: mvn --batch-mode -DskipTests clean install spring-boot:repackage
