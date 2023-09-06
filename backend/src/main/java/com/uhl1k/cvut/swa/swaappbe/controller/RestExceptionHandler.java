@@ -13,6 +13,7 @@ public class RestExceptionHandler {
   @ExceptionHandler(value = {FeignException.class})
   public ResponseEntity<String> feignExceptionHandler(Exception ex, WebRequest req) {
     System.out.println(ex.getMessage().split(":")[1].substring(2, 5));
+    System.out.println(ex.getMessage());
     switch (ex.getMessage().split(":")[1].substring(2, 5)) {
       case "400":
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
