@@ -7,18 +7,22 @@ import { BooksComponent } from './books/books.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { ShopsComponent } from './shops/shops.component';
 import {HttpClientModule} from "@angular/common/http";
+import { NewShopComponent } from './new-shop/new-shop.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksComponent,
     AuthorsComponent,
-    ShopsComponent
+    ShopsComponent,
+    NewShopComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

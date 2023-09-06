@@ -14,6 +14,7 @@ export class ShopsComponent implements OnInit {
   loading: boolean = false;
   error: boolean = false;
   page: number = 0;
+  lastPage: number = 0;
 
   constructor(private shopsService: ShopsService) { }
 
@@ -25,8 +26,9 @@ export class ShopsComponent implements OnInit {
       return err;
     })).subscribe(data => {
       console.log(data);
-      this.shops = data;
+      this.shops = data.data;
       this.loading = false;
+      this.lastPage = data.totalPages;
     })
   }
 
