@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
@@ -45,13 +44,13 @@ public class ShopsController {
   }
 
   @PostMapping("/api/shops/{id}")
-  public ResponseEntity<Object> modifyShop(@RequestParam int id, @RequestBody NewShopDto shop) {
+  public ResponseEntity<Object> modifyShop(@PathVariable int id, @RequestBody NewShopDto shop) {
     stepanService.updateShop(id, shop);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @DeleteMapping("/api/shops/{id}")
-  public ResponseEntity<Object> deleteShop(@RequestParam int id) {
+  public ResponseEntity<Object> deleteShop(@PathVariable int id) {
     stepanService.deleteShop(id);
     return new ResponseEntity<>(HttpStatus.OK);
   }
