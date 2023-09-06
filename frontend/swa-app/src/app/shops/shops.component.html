@@ -18,10 +18,12 @@
     <td>{{shop.email}}</td>
     <td>{{shop.opens}}</td>
     <td>{{shop.closes}}</td>
-    <td><a routerLink="/edit-shop/{{shop.id}}"><button>Edit</button></a> <button>Remove</button></td>
+    <td><button (click)="remove(shop.id)">Remove</button></td>
   </tr>
 
   <tr *ngIf="!error && !loading && (shops === undefined || shops.length === 0)"><td colspan="6" style="text-align: center">No data :(</td></tr>
   <tr *ngIf="error"><td colspan="6" style="text-align: center">Error</td></tr>
   <tr *ngIf="loading"><td colspan="6" style="text-align: center">Loading</td></tr>
 </table>
+
+<div></div>

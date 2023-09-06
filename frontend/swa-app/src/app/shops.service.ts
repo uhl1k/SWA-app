@@ -17,4 +17,8 @@ export class ShopsService {
   public addShop(shop: NewShop): Observable<any> {
     return this.httpClient.put('http://' + location.hostname + ':8080/api/shops', shop);
   }
+
+  public removeShop(id: number): Observable<any> {
+    return this.httpClient.delete('http://' + location.hostname + ':8080/api/shops/' + id);
+  }
 }

@@ -16,6 +16,8 @@ export class ShopsComponent implements OnInit {
   page: number = 0;
   lastPage: number = 0;
 
+  removeFailed: boolean = false;
+
   constructor(private shopsService: ShopsService) { }
 
   ngOnInit(): void {
@@ -32,4 +34,12 @@ export class ShopsComponent implements OnInit {
     })
   }
 
+  remove(id: number): void {
+    this.shopsService.removeShop(id).pipe(catchError(err => {
+      this.removeFailed = true;
+      return err;
+    })).subscribe(data => {
+      this.removeFailed = false;
+    })
+  }
 }

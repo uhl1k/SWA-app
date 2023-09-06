@@ -22,4 +22,7 @@
   Closes: <input [(ngModel)]="closes" type="text">
 </p>
 
-<p><a routerLink="/shops"><button>Cancel</button></a> <button (click)="addNewShop()">Add</button></p>
+<p *ngIf="invalidData">Data is not valid!</p>
+<p *ngIf="backendError">Error when communicating with backend. Try it again later.</p>
+
+<p><button [disabled]="communicating" (click)="goBack()">Cancel</button> <button (click)="addNewShop()" [disabled]="communicating">Add</button></p>
