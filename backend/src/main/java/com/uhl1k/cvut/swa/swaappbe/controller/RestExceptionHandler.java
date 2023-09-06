@@ -12,7 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 public class RestExceptionHandler {
   @ExceptionHandler(value = {FeignException.class})
   public ResponseEntity<String> feignExceptionHandler(Exception ex, WebRequest req) {
-    switch (ex.getMessage().split(":")[1].substring(1, 4)) {
+    switch (ex.getMessage().substring(1, 4)) {
       case "400":
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
