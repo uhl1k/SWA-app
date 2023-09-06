@@ -3,6 +3,7 @@ package com.uhl1k.cvut.swa.swaappbe.services;
 import com.uhl1k.cvut.swa.swaappbe.dto.AvailabilityDto;
 import com.uhl1k.cvut.swa.swaappbe.dto.NewAvailabilityDto;
 import com.uhl1k.cvut.swa.swaappbe.dto.NewShopDto;
+import com.uhl1k.cvut.swa.swaappbe.dto.PageDto;
 import com.uhl1k.cvut.swa.swaappbe.dto.ShopDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -28,7 +29,7 @@ public class StepanService {
     return stepanDataSource.stepanAlive();
   }
 
-  public ShopDto[] getShops(int page, int pageSize) {
+  public PageDto<ShopDto> getShops(int page, int pageSize) {
     return stepanDataSource.getShops(page, pageSize);
   }
 
@@ -72,7 +73,7 @@ public class StepanService {
 
     @RequestMapping(path = "/openapi/shops", method = RequestMethod.GET)
     @ResponseBody
-    ShopDto[] getShops(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize);
+    PageDto<ShopDto> getShops(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize);
 
     @RequestMapping(path = "/openapi/shops", method = RequestMethod.PUT)
     @ResponseBody
