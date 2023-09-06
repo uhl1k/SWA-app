@@ -1,0 +1,31 @@
+<a routerLink="/new-shop"><button>Add new shop</button></a>
+
+<p *ngIf="removeFailed">Removing failed, try it again.</p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Opens</th>
+    <th>Closes</th>
+    <th></th>
+  </tr>
+
+  <tr *ngFor="let shop of shops">
+    <td>{{shop.name}}</td>
+    <td>{{shop.address}}</td>
+    <td>{{shop.phone}}</td>
+    <td>{{shop.email}}</td>
+    <td>{{shop.opens}}</td>
+    <td>{{shop.closes}}</td>
+    <td><button (click)="remove(shop.id)">Remove</button></td>
+  </tr>
+
+  <tr *ngIf="!error && !loading && (shops === undefined || shops.length === 0)"><td colspan="6" style="text-align: center">No data :(</td></tr>
+  <tr *ngIf="error"><td colspan="6" style="text-align: center">Error</td></tr>
+  <tr *ngIf="loading"><td colspan="6" style="text-align: center">Loading</td></tr>
+</table>
+
+<div></div>
