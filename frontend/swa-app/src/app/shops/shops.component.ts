@@ -21,6 +21,10 @@ export class ShopsComponent implements OnInit {
   constructor(private shopsService: ShopsService) { }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData() {
     this.loading = true;
     this.shopsService.getShops(this.page, 50).pipe(catchError(err => {
       this.loading = false;
@@ -31,6 +35,7 @@ export class ShopsComponent implements OnInit {
       this.shops = data.data;
       this.loading = false;
       this.lastPage = data.totalPages;
+      this.page++;
     })
   }
 
@@ -40,6 +45,8 @@ export class ShopsComponent implements OnInit {
       return err;
     })).subscribe(data => {
       this.removeFailed = false;
+      this.page = 0;
+      this.loadData();
     })
   }
 }
