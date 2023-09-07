@@ -20,7 +20,7 @@
     <td>{{shop.email}}</td>
     <td>{{shop.opens}}</td>
     <td>{{shop.closes}}</td>
-    <td><button (click)="remove(shop.id)">Remove</button></td>
+    <td><a routerLink="/modify-shop/{{shop.id}}"><button>Modify</button></a><button (click)="remove(shop.id)">Remove</button></td>
   </tr>
 
   <tr *ngIf="!error && !loading && (shops === undefined || shops.length === 0)"><td colspan="6" style="text-align: center">No data :(</td></tr>

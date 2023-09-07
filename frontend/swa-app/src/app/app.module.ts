@@ -9,6 +9,7 @@ import { ShopsComponent } from './shops/shops.component';
 import {HttpClientModule} from "@angular/common/http";
 import { NewShopComponent } from './new-shop/new-shop.component';
 import {FormsModule} from "@angular/forms";
+import { ModifyShopComponent } from './modify-shop/modify-shop.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {FormsModule} from "@angular/forms";
     BooksComponent,
     AuthorsComponent,
     ShopsComponent,
-    NewShopComponent
+    NewShopComponent,
+    ModifyShopComponent
   ],
   imports: [
     BrowserModule,

@@ -21,4 +21,12 @@ export class ShopsService {
   public removeShop(id: number): Observable<any> {
     return this.httpClient.delete('http://' + location.hostname + ':8080/api/shops/' + id);
   }
+
+  public modifyShop(id: number, shop: NewShop): Observable<any> {
+    return this.httpClient.post('http://' + location.hostname + ':8080/api/shops/' + id, shop);
+  }
+
+  public getShop(id: number): Observable<any> {
+    return this.httpClient.get('http://' + location.hostname + ':8080/api/shops/' + id);
+  }
 }
