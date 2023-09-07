@@ -11,22 +11,22 @@ export class ShopsService {
   constructor(private httpClient: HttpClient) { }
 
   public getShops(page: number, pageSize: number): Observable<any> {
-    return this.httpClient.get('http://' + location.hostname + ':8080/api/shops?page=' + page + "&pageSize=" + pageSize);
+    return this.httpClient.get('http://' + location.hostname + ':8081/api/shops?page=' + page + "&pageSize=" + pageSize);
   }
 
   public addShop(shop: NewShop): Observable<any> {
-    return this.httpClient.put('http://' + location.hostname + ':8080/api/shops', shop);
+    return this.httpClient.put('http://' + location.hostname + ':8081/api/shops', shop);
   }
 
   public removeShop(id: number): Observable<any> {
-    return this.httpClient.delete('http://' + location.hostname + ':8080/api/shops/' + id);
+    return this.httpClient.delete('http://' + location.hostname + ':8081/api/shops/' + id);
   }
 
   public modifyShop(id: number, shop: NewShop): Observable<any> {
-    return this.httpClient.post('http://' + location.hostname + ':8080/api/shops/' + id, shop);
+    return this.httpClient.post('http://' + location.hostname + ':8081/api/shops/' + id, shop);
   }
 
   public getShop(id: number): Observable<any> {
-    return this.httpClient.get('http://' + location.hostname + ':8080/api/shops/' + id);
+    return this.httpClient.get('http://' + location.hostname + ':8081/api/shops/' + id);
   }
 }
