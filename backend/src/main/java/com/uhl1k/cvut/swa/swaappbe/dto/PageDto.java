@@ -15,5 +15,5 @@ public class PageDto<K> {
   int pageSize;
   int totalPages;
 
-  List<K> data;
+  K[] data;
 }

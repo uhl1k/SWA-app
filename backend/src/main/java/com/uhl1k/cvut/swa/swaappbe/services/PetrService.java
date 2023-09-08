@@ -4,6 +4,7 @@ import com.uhl1k.cvut.swa.swaappbe.dto.AuthorDto;
 import com.uhl1k.cvut.swa.swaappbe.dto.BookDto;
 import com.uhl1k.cvut.swa.swaappbe.dto.NewAuthorDto;
 import com.uhl1k.cvut.swa.swaappbe.dto.NewBookDto;
+import com.uhl1k.cvut.swa.swaappbe.dto.PageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -28,7 +29,7 @@ public class PetrService {
     return petrDataSource.aliveEndPoint();
   }
 
-  public BookDto[] getBooks(int page, int pageSize, String title) {
+  public PageDto<BookDto> getBooks(int page, int pageSize, String title) {
     return petrDataSource.getBooks(page, pageSize, title);
   }
 
@@ -80,7 +81,7 @@ public class PetrService {
 
     @RequestMapping(path = "/books", method = RequestMethod.GET)
     @ResponseBody
-    BookDto[] getBooks(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize, @RequestParam("title") String title);
+    PageDto<BookDto> getBooks(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize, @RequestParam("title") String title);
 
     @RequestMapping(path = "/books", method = RequestMethod.PUT)
     @ResponseBody
